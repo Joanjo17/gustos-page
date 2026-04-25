@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useClickOutside } from "../hooks/useClickOutside.js";
 import { AddLike } from "../components/AddLike.jsx";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
@@ -19,19 +19,19 @@ export function Home() {
   const [activeCategory, setActiveCategory] = useState("Todas");
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(likes));
-  }, [likes]);
+  const [editingLike, setEditingLike] = useState(null);
 
   const categories = useMemo(() => {
-    const set = new Set(likes.map((like) => like.category).filter(Boolean));
+    const set = new Set(
+      likes.flatMap((like) => like.categories).filter(Boolean),
+    );
     return ["Todas", ...Array.from(set).sort()];
   }, [likes]);
 
   const filteredLikes = useMemo(() => {
     return likes.filter((like) => {
       const matchesCategory =
-        activeCategory === "Todas" || like.category === activeCategory;
+        activeCategory === "Todas" || like.categories.includes(activeCategory);
 
       const term = searchTerm.toLowerCase();
       const matchesSearch =
@@ -44,6 +44,15 @@ export function Home() {
   const handleDeleteLike = (id) => {
     // Guardamos solo los gustos que no tengan el id a eliminar
     setLikes((likes) => likes.filter((like) => like.id !== id));
+  };
+
+  const handleEditLike = (like) => {
+    setEditingLike(like);
+    setOpen(true);
+  };
+  const closeModal = () => {
+    setOpen(false);
+    setEditingLike(null);
   };
   return (
     <main className={styles.main}>
@@ -61,7 +70,17 @@ export function Home() {
           addLike={(newLike) =>
             setLikes((prevLikes) => [...prevLikes, newLike])
           }
-          closeModal={() => setOpen(false)}
+          closeModal={closeModal}
+          likeToEdit={editingLike}
+          updateLike={(updatedLike) => {
+            setLikes((prevLikes) => {
+              const likes = prevLikes.filter(
+                (like) => like.id !== updatedLike.id,
+              );
+
+              return [...likes, updatedLike];
+            });
+          }}
         />
       )}
 
@@ -100,17 +119,30 @@ export function Home() {
             {filteredLikes.map((like) => (
               <li key={like.id} className={styles.likeCard}>
                 <div className={styles.likeContent}>
-                  <span>{like.category}</span>
+                  {like.imageUrl && <img src={like.imageUrl} alt={like.name} />}
+
+                  {like.categories.map((category, index) => (
+                    <span key={`${category}-${index}`}>{category}</span>
+                  ))}
                   <h3>{like.name}</h3>
                   <p>{like.description}</p>
                 </div>
 
-                <button
-                  className={styles.deleteButton}
-                  onClick={() => handleDeleteLike(like.id)}
-                >
-                  Eliminar
-                </button>
+                <div className={styles.manageLike}>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={() => handleDeleteLike(like.id)}
+                  >
+                    Eliminar
+                  </button>
+
+                  <button
+                    className={styles.editButton}
+                    onClick={() => handleEditLike(like)}
+                  >
+                    Editar
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
