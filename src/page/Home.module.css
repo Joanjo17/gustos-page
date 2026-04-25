@@ -42,6 +42,100 @@
   background: #5128ab;
 }
 
+.heroActions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.exportButton,
+.importToggleButton,
+.importButton,
+.cancelImportButton {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.exportButton {
+  background: white;
+  color: #5128ab;
+  border: 1px solid rgba(81, 40, 171, 0.2);
+}
+
+.exportButton:hover {
+  transform: translateY(-1px);
+  background: #f7eaff;
+}
+
+.importToggleButton,
+.importButton {
+  background: #dbb727;
+  color: white;
+}
+
+.importToggleButton:hover,
+.importButton:hover {
+  transform: translateY(-1px);
+  background: #b5961c;
+}
+
+.importBox {
+  max-width: 620px;
+  margin: 1.5rem auto 0;
+  padding: 1rem;
+  border: 1px solid rgba(36, 21, 26, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.55);
+  text-align: left;
+}
+
+.importBox label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4b2934;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.importBox textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 110px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ead7dd;
+  border-radius: 14px;
+  background: white;
+  font: inherit;
+  outline: none;
+}
+
+.importBox textarea:focus {
+  border-color: #8727db;
+  box-shadow: 0 0 0 4px rgba(141, 39, 219, 0.12);
+}
+
+.importActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.cancelImportButton {
+  background: #f3e8ee;
+  color: #6b3148;
+}
+
+.cancelImportButton:hover {
+  background: #ead1dc;
+}
+
 .likesSection {
   max-width: 980px;
   margin: 0 auto;
@@ -180,7 +274,7 @@
   overflow-wrap: break-word;
 }
 
-.manageLike{
+.manageLike {
   display: flex;
   align-items: center;
   gap: 10px;

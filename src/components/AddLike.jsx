@@ -26,7 +26,7 @@ export function AddLike({
     const description = form.description.trim();
     const imageUrl = form.imageUrl.trim();
 
-    if (!name || categories.length === 0 || !description || !imageUrl) return;
+    if (!name || categories.length === 0 || !description) return;
 
     let newLike = {
       name,

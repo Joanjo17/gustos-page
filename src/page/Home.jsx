@@ -9,6 +9,8 @@ const STORAGE_KEY = "mis-gustos-v2";
 
 export function Home() {
   const [likes, setLikes] = useLocalStorage(STORAGE_KEY, []);
+  const [showImport, setShowImport] = useState(false);
+  const importJsonTextRef = useRef();
 
   const [open, setOpen] = useState(false);
   const dialogRef = useRef();
@@ -54,14 +56,75 @@ export function Home() {
     setOpen(false);
     setEditingLike(null);
   };
+
+  const handleExport = async () => {
+    const data = JSON.stringify(likes, null, 2);
+    await navigator.clipboard.writeText(data);
+    alert("Lista copiada al portapapeles");
+  };
+  const handleImport = () => {
+    const jsonText = importJsonTextRef.current.value;
+    //Convertir el texto a objeto JSON
+    try {
+      const dataJSON = JSON.parse(jsonText);
+      if (!Array.isArray(dataJSON)) {
+        alert("Formato inválido");
+        return;
+      }
+      setLikes(dataJSON);
+    } catch {
+      alert("Error al convertir a JSON");
+      console.error("Error al convertir texto a JSON");
+    }
+  };
   return (
     <main className={styles.main}>
       <section className={styles.hero}>
         <h1>Diario de gustos</h1>
         <p>Para que no te olvides de lo que te gusta y por qué.</p>
-        <button className={styles.addButton} onClick={() => setOpen(true)}>
-          Agregar gusto
-        </button>
+
+        <div className={styles.heroActions}>
+          <button className={styles.addButton} onClick={() => setOpen(true)}>
+            Agregar gusto
+          </button>
+
+          <button className={styles.exportButton} onClick={handleExport}>
+            Exportar lista
+          </button>
+
+          <button
+            className={styles.importToggleButton}
+            onClick={() => setShowImport((prev) => !prev)}
+          >
+            Importar lista
+          </button>
+        </div>
+
+        {showImport && (
+          <div className={styles.importBox}>
+            <label htmlFor="import-json">Pega tu JSON exportado</label>
+
+            <textarea
+              id="import-json"
+              ref={importJsonTextRef}
+              rows={5}
+              placeholder="Pega aquí tu JSON..."
+            />
+
+            <div className={styles.importActions}>
+              <button className={styles.importButton} onClick={handleImport}>
+                Confirmar importación
+              </button>
+
+              <button
+                className={styles.cancelImportButton}
+                onClick={() => setShowImport(false)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       {open && (
