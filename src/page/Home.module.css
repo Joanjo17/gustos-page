@@ -1,0 +1,211 @@
+.main {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #ffecd4, #d4d5ff);
+  color: #151524;
+}
+
+.hero {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.hero p {
+  margin: 1rem auto 1.5rem;
+  max-width: 520px;
+  color: #6b4b55;
+  font-size: 1.1rem;
+}
+
+.addButton {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  background: #7d41ff;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(36, 21, 26, 0.18);
+  transition: all 0.2s ease;
+}
+
+.addButton:hover {
+  transform: translateY(-1px);
+  background: #5128ab;
+}
+
+.likesSection {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border: 1px solid rgba(36, 21, 26, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 20px 50px rgba(36, 21, 26, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.sectionHeader span {
+  color: #8a6470;
+  font-size: 0.9rem;
+}
+
+.controls {
+  margin-bottom: 1.5rem;
+}
+
+.controls input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ead7dd;
+  border-radius: 14px;
+  background: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.controls input:focus {
+  border-color: #8727db;
+  box-shadow: 0 0 0 4px rgba(141, 39, 219, 0.12);
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.categories button {
+  padding: 0.55rem 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background: #f7eaff;
+  color: #412626;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.categories button:hover {
+  background: #ead1dc;
+}
+
+.categories .active {
+  background: #dbb727;
+  color: white;
+}
+
+.empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #8a6470;
+  border: 1px dashed #e5c7d2;
+  border-radius: 18px;
+  background: #fff7fb;
+}
+
+.likesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.likeCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.25rem;
+  border: 1px solid #f0dce4;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 12px 30px rgba(36, 21, 26, 0.07);
+}
+
+.likeCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(36, 21, 26, 0.12);
+}
+
+.likeContent span {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: #fffade;
+  color: #8a4b16;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.likeContent h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.likeContent p {
+  margin: 0;
+  color: #705972;
+  line-height: 1.5;
+}
+
+.likeContent h3,
+.likeContent p,
+.likeContent span {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.deleteButton {
+  align-self: flex-start;
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 12px;
+  background: #fee2e2;
+  color: #b91c1c;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.deleteButton:hover {
+  background: #fecaca;
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: 2rem 1rem;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .likesSection {
+    padding: 1rem;
+  }
+}
