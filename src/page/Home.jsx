@@ -5,7 +5,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage.js";
 
 import styles from "./Home.module.css";
 
-const STORAGE_KEY = "mis-gustos";
+const STORAGE_KEY = "mis-gustos-v2";
 
 export function Home() {
   const [likes, setLikes] = useLocalStorage(STORAGE_KEY, []);
