@@ -58,7 +58,7 @@ export function Home() {
   };
 
   const handleExport = async () => {
-    const data = JSON.stringify(likes, null, 2);
+    const data = JSON.stringify(likes);
     await navigator.clipboard.writeText(data);
     alert("Lista copiada al portapapeles");
   };
