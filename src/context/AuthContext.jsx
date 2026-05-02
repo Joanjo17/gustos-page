@@ -19,6 +19,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const initAuth = async () => {
+      console.log("Inicializando autenticación...");
       try {
         const tokenData = await getCsrfToken();
         setCsrfToken(tokenData);
@@ -28,6 +29,7 @@ export function AuthProvider({ children }) {
         console.error(error);
       } finally {
         setLoadingAuth(false);
+        console.log("Autenticación inicializada.");
       }
     };
     initAuth();
