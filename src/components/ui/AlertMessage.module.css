@@ -1,0 +1,21 @@
+.alert {
+  max-width: 980px;
+  margin: 0 auto 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 14px;
+  background: #fee2e2;
+  color: #991b1b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.alert button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-weight: 800;
+}

@@ -1,3 +1,14 @@
+:root{
+  --primary-color: #f36c97;
+  --primary-color-hover: #f22f6d;
+  --text-color: #151524;
+  --text-color-light: #412626;
+  --background-gradient: linear-gradient(115deg, #fdd4eb, #d6d6fb);
+  --border-color: rgba(36, 21, 26, 0.08);
+  --secondary-color: #4aa1d3;
+
+}
+
 * {
   font-family: Tahoma, Geneva, Verdana, sans-serif; 
 }
@@ -6,20 +17,107 @@
 *::after {
   box-sizing: border-box;
 }
-body{
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-input { 
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+body{
+  min-height: 100vh;
+  background: var(--background-gradient);
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  color: var(--text-color);
+  min-height: 100vh;
 }
-button {
-  padding: 10px;
-  background-color: #4c2bd1;
-  color: white;
+
+main {
+  padding: 3rem 1.5rem;
+}
+
+
+/* Header */
+header{
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 20px 50px var(--border-color);
+  border-radius: 12px;
+  padding: .5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  
+
+  h2 a{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.auth-header-controls,
+nav {
+  gap: 1rem;
+  display: flex;
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.2s;
+    font-weight: 500;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    &:hover, &:focus {
+      color: var(--primary-color);
+      outline: none;
+    }
+
+    svg {
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+}
+.nav-link-active{
+  color: var(--primary-color) !important;
+  pointer-events: none;
+  opacity: 0.5;
+  user-select: none;
+}
+
+.auth-header-controls button {
+  background: none;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.2s;
+  height: 32px;
+
+  &:hover, &:focus {
+    color: var(--primary-color);
+    outline: none;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 2rem 1rem;
+  }
 }

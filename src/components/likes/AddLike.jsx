@@ -7,6 +7,7 @@ export function AddLike({
   closeModal,
   likeToEdit,
   updateLike,
+  saving,
 }) {
   const [form, setForm] = useState({
     name: likeToEdit?.name ?? "",
@@ -15,7 +16,7 @@ export function AddLike({
     imageUrl: likeToEdit?.imageUrl ?? "",
   });
 
-  const handleAddLike = (event) => {
+  const handleAddLike = async (event) => {
     event.preventDefault();
 
     const name = form.name.trim();
@@ -35,33 +36,37 @@ export function AddLike({
       imageUrl,
     };
 
-    if (!likeToEdit) {
-      newLike.id = Date.now();
-      //Añadimos el gusto a la lista.
-      addLike(newLike);
-    } else {
-      newLike.id = likeToEdit.id;
-      updateLike(newLike);
+    try {
+      if (!likeToEdit) {
+        await addLike(newLike);
+      } else {
+        await updateLike({ ...newLike, id: likeToEdit.id });
+      }
+      //Limpiamos los campos
+      setForm({
+        name: "",
+        categories: "",
+        description: "",
+        imageUrl: "",
+      });
+      closeModal();
+    } catch (error) {
+      console.error(error);
     }
-
-    //Limpiamos los campos
-    setForm({
-      name: "",
-      categories: "",
-      description: "",
-      imageUrl: "",
-    });
-
-    closeModal();
   };
 
   return (
     <div className={styles.overlay}>
       <div ref={refModal} className={styles.modal}>
-        <button onClick={closeModal} className={styles.closeButton}>
+        <button
+          type="button"
+          onClick={closeModal}
+          className={styles.closeButton}
+          disabled={saving}
+        >
           <span>✖</span>
         </button>
-        <h2>Agregar gusto</h2>
+        <h2>{likeToEdit ? "Editar gusto" : "Agregar gusto"}</h2>
         <form onSubmit={handleAddLike} className={styles.form}>
           <div>
             <input
@@ -99,7 +104,9 @@ export function AddLike({
               onChange={(e) => setForm({ ...form, imageUrl: e.target.value })}
             />
           </div>
-          <button type="submit">Agregar</button>
+          <button type="submit" disabled={saving}>
+            {saving ? "Guardando..." : likeToEdit ? "Actualizar" : "Agregar"}
+          </button>
         </form>
       </div>
     </div>

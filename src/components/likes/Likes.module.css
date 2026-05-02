@@ -1,0 +1,235 @@
+.hero {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.heroTitle {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  margin: 1rem auto 1.5rem;
+  max-width: 520px;
+  color: #6b4b55;
+  font-size: 1.1rem;
+}
+
+.addButton {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--primary-color);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(36, 21, 26, 0.18);
+  transition: all 0.2s ease;
+}
+
+.addButton:hover {
+  transform: translateY(-1px);
+  background: var(--primary-color-hover);
+}
+
+.heroActions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.likesSection {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 20px 50px var(--border-color);
+  backdrop-filter: blur(12px);
+}
+
+
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.sectionHeader span {
+  color: #8a6470;
+  font-size: 0.9rem;
+}
+
+.controls {
+  margin-bottom: 1.5rem;
+}
+
+.controls input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ead7dd;
+  border-radius: 14px;
+  background: white;
+  font-size: 1rem;
+  outline: none;
+}
+
+.controls input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(242, 47, 109, 0.15);
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.categories button {
+  padding: 0.55rem 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background: #f7eaff;
+  color: #412626;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.categories button:hover {
+  background: #d7bccc;
+}
+
+.categories .active {
+  background: var(--secondary-color);
+  color: rgb(255, 237, 237);
+}
+
+.empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #8a6470;
+  border: 1px dashed #e5c7d2;
+  border-radius: 18px;
+  background: #fff7fb;
+}
+
+.likesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.likeCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.25rem;
+  border: 1px solid #f0dce4;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 12px 30px var(--border-color);
+}
+
+.likeCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px var(--border-color);
+}
+
+.likeContent span {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: #fefae2;
+  color: #3f1d01;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.likeContent h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.likeContent p {
+  margin: 0;
+  color: var(--text-color-light);
+  line-height: 1.5;
+}
+
+.likeContent h3,
+.likeContent p,
+.likeContent span {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.manageLike {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.deleteButton {
+  align-self: flex-start;
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 12px;
+  background: #ffd7d7;
+  color: #b20404;
+  cursor: pointer;
+  font-weight: 700;
+}
+.editButton{
+  align-self: flex-start;
+  padding: 0.55rem 0.8rem;
+  border: none;
+  border-radius: 12px;
+  background: #fff5e1;
+  color: #756c00;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.deleteButton:hover {
+  background: #fecaca;
+}
+
+.likeContent img {
+  width: 100%;
+  height: 180px;      
+  object-fit:contain;  
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .likesSection {
+    padding: 1rem;
+  }
+}
