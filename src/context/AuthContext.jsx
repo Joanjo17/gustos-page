@@ -20,13 +20,19 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const initAuth = async () => {
       console.log("Inicializando autenticación...");
+      console.log("API_URL:", import.meta.env.VITE_API_URL);
       try {
+        console.log("Antes de getCsrfToken");
         const tokenData = await getCsrfToken();
+        console.log("Después de getCsrfToken", tokenData);
         setCsrfToken(tokenData);
+
+        console.log("Antes de getUserMe");
         const userData = await getUserMe(tokenData);
+        console.log("Después de getUserMe", userData);
         setUser(userData);
       } catch (error) {
-        console.error(error);
+        console.error("Error initAuth:", error);
       } finally {
         setLoadingAuth(false);
         console.log("Autenticación inicializada.");
