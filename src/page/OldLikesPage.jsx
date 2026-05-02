@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef } from "react";
 import { useClickOutside } from "../hooks/useClickOutside.js";
-import { AddLike } from "../components/AddLike.jsx";
+import { AddLike } from "../components/likes/AddLike.jsx";
 import { useLocalStorage } from "../hooks/useLocalStorage.js";
 
 import styles from "./OldLikesPage.module.css";
