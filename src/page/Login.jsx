@@ -27,15 +27,14 @@ export function Login() {
     const username = formData.get("username").trim();
     const password = formData.get("password").trim();
 
-    if (password.length < 8) {
-      setErrorMessage("La contraseña debe tener al menos 8 caracteres.");
-      setLoading(false);
-      return;
-    }
+    const hasMinLength = password.length >= 8;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSymbol = /[^A-Za-z0-9]/.test(password);
 
-    if (!/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+    if (!hasMinLength || !hasUppercase || !hasNumber || !hasSymbol) {
       setErrorMessage(
-        "La contraseña debe contener al menos una mayúscula y un número.",
+        "La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo.",
       );
       setLoading(false);
       return;
